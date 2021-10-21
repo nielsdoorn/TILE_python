@@ -1816,16 +1816,12 @@ Insist that the students test their programs by giving them the expected outcome
 \item Write a program to determine whether an integer is prime or not. A prime number is a natural number greater than 1 that has only two positive divisors: itself and 1. For example, the prime numbers less than 200 are:
 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199. You can use them as test cases for your program. 
 
-Remember, you should not only tests whether primes are detected correctly. You should also test other numbers and check your program says they are not prime.
+Remember, you should not only tests whether primes are detected correctly. You should also test other numbers and check your program says they are not prime. Also try with negative numbers.
 
 
 \begin{howTILEd}
 Insist that the students test their programs by giving them ideas or pointers about the test data to use.
 \end{howTILEd}
-
-
-
-
 
 
 \item Implement a program that, given two integers, returns if one is a divisor of the other. To do this, you must detect which is the smallest. You cannot use the division or remainder operation. In your implementation you must also take into account negative numbers and 0 (all numbers are divisors of 0).
@@ -1945,10 +1941,26 @@ Note that this section contains the first exercises where pytests are used. This
 
 \item Write a function \pythoninline{is\_digit} which receives a character as a parameter and returns a boolean. The function will return \pythoninline{True} when the character is a digit from 0 to 9, otherwise it will return \pythoninline{False}). 
 
-You can use the following pytests to test your function:
+You can use the following test cases to test your function:
 
+\begin{tabular}{|l|l|l|l|}
+\hline
+test\_case\_ID  & test\_input & expected\_output  & reason for testing this\\ 
+\hline\hline
+1 & \pythoninline{'0'}  & \pythoninline{True}      & smallest digit \\
+2 & \pythoninline{'9'}  & \pythoninline{True}      & largest digit\\
+3 & \pythoninline{'5'}  & \pythoninline{True}      & other digit\\
+4 & \pythoninline{'12'}  & \pythoninline{False}    & it is not a digit between 0 and 9\\
+5 & \pythoninline{'-2'}  & \pythoninline{False}    & negative digit\\
+6 & \pythoninline{'hello'}  & \pythoninline{False} & string\\
+\hline
+\end{tabular}
+
+In pytest these could be implemented like:
+
+\begin{small}
 \begin{python}
-@pytest.mark.parametrize("testcase, input, expected_output",[
+@pytest.mark.parametrize("test_case_ID, test_input, expected_output",[
     (1, '0', True),          #smallest digit
     (2, '9', True),          #largest digit
     (3, '5', True),          #other digit
@@ -1958,15 +1970,16 @@ You can use the following pytests to test your function:
     ]
 )
 
-def test_is_digit(testcase, input, expected_output):
-    assert is_digit(input) == expected_output, "case {0}".format(testcase)
+def test_is_digit(test_case_ID, test_input, expected_output):
+    assert is_digit(test_input) == expected_output, "case {0}".format(test_case_ID)
 \end{python}
+\end{small}
 
 
 \begin{howTILEd}
-Insist that the students test their programs by giving them example pytests.
+Insist that the students test their programs by giving them example pytests. 
+And make the connection to the tables with test cases they have seen before.
 \end{howTILEd}
-
 
 
 
